@@ -8,6 +8,7 @@ function Historical() {
   const [end, setEnd] = useState("");
   const [data, setData] = useState([]);
   const [pmData, setPmData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = () => {
     if (!start || !end) {
@@ -32,11 +33,22 @@ function Historical() {
 
     navigator.geolocation.getCurrentPosition(async (pos) => {
       try {
+        setLoading(true);
+
         const lat = pos.coords.latitude;
         const lon = pos.coords.longitude;
 
         const res = await getHistoricalData(lat, lon, start, end);
         const air = await getAirQuality(lat, lon);
+
+        console.log("API RESPONSE:", res); // DEBUG
+
+        // 🔥 FIX 1: handle empty API response
+        if (!res.daily || !res.daily.time) {
+          alert("No historical data available for selected range");
+          setLoading(false);
+          return;
+        }
 
         const formatted = res.daily.time.map((t, i) => ({
           time: t,
@@ -60,16 +72,19 @@ function Historical() {
 
         setData(formatted);
 
+        // 🔥 FIX 2: format pmData properly
         const pm = air.hourly.time.map((t, i) => ({
-          time: t,
+          time: new Date(t).toLocaleDateString(),
           pm10: air.hourly.pm10[i],
           pm25: air.hourly.pm2_5[i],
         }));
 
         setPmData(pm.slice(0, 50));
+        setLoading(false);
       } catch (err) {
         console.log(err);
         alert("Error fetching data");
+        setLoading(false);
       }
     });
   };
@@ -95,7 +110,19 @@ function Historical() {
         <button onClick={fetchData}>Analyze</button>
       </div>
 
-      {data.length > 0 && (
+      {/* 🔥 FIX 3: loading state */}
+      {loading && (
+        <p style={{ textAlign: "center", marginTop: "20px" }}>Loading...</p>
+      )}
+
+      {/* 🔥 FIX 4: fallback UI */}
+      {!loading && data.length === 0 && (
+        <p style={{ textAlign: "center", marginTop: "30px" }}>
+          No data found. Please select past dates.
+        </p>
+      )}
+
+      {!loading && data.length > 0 && (
         <>
           <div style={{ marginTop: "30px" }}>
             <h3 style={{ textAlign: "center", marginBottom: "10px" }}>

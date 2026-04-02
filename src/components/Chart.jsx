@@ -1,19 +1,63 @@
-function WeatherCard({ title, value }) {
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+  Legend,
+} from "recharts";
+
+function Chart({ data, title, keys }) {
+  if (!data || data.length === 0) return null;
+
   return (
     <div
       style={{
+        marginTop: "30px",
         background: "#1e293b",
-        padding: "16px",
-        borderRadius: "14px",
-        width: "140px",
-        textAlign: "center",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+        padding: "20px",
+        borderRadius: "12px",
       }}
     >
-      <p style={{ color: "#94a3b8", fontSize: "13px" }}>{title}</p>
-      <h3 style={{ margin: "5px 0" }}>{value}</h3>
+      <h3 style={{ textAlign: "center", marginBottom: "10px", color: "#fff" }}>
+        {title}
+      </h3>
+
+      {/* 🔥 VERY IMPORTANT: height must be set */}
+      <div style={{ width: "100%", height: "300px" }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+
+            <XAxis
+              dataKey="time"
+              stroke="#94a3b8"
+              tick={{ fontSize: 12 }}
+            />
+
+            <YAxis stroke="#94a3b8" />
+
+            <Tooltip />
+
+            <Legend />
+
+            {keys.map((k, index) => (
+              <Line
+                key={index}
+                type="monotone"
+                dataKey={k.key}
+                stroke={k.color}
+                strokeWidth={2}
+                dot={false}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
-export default WeatherCard;
+export default Chart;
