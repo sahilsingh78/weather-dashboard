@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
   Legend,
+  Brush, // 🔥 added
 } from "recharts";
 
 function Chart({ data, title, keys }) {
@@ -25,8 +26,8 @@ function Chart({ data, title, keys }) {
         {title}
       </h3>
 
-      {/* 🔥 VERY IMPORTANT: height must be set */}
-      <div style={{ width: "100%", height: "300px" }}>
+      {/* 🔥 Scroll + fixed height */}
+      <div style={{ width: "100%", height: "300px", overflowX: "auto" }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -40,7 +41,6 @@ function Chart({ data, title, keys }) {
             <YAxis stroke="#94a3b8" />
 
             <Tooltip />
-
             <Legend />
 
             {keys.map((k, index) => (
@@ -53,6 +53,14 @@ function Chart({ data, title, keys }) {
                 dot={false}
               />
             ))}
+
+            {/* 🔥 KEY FEATURE: Zoom + range selection */}
+            <Brush
+              dataKey="time"
+              height={30}
+              stroke="#38bdf8"
+              travellerWidth={10}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
