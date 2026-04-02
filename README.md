@@ -83,7 +83,7 @@ src/
 
 ## 🌐 Live Demo
 
-https://weather-dashboard-gold-gamma.vercel.app/
+https://weather-dashboard-wcj1.vercel.app/
 
 ---
 
