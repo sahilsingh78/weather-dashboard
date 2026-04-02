@@ -1,16 +1,98 @@
-# React + Vite
+# 🌍 Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple weather dashboard built using React that shows real-time weather data and historical trends based on user location.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📌 About the Project
 
-## React Compiler
+This project was built to explore how APIs and frontend visualization can be combined to create useful real-world dashboards.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The app automatically detects the user's location and displays:
 
-## Expanding the ESLint configuration
+* Current weather
+* Hourly forecasts
+* Air quality data
+* Historical weather trends
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+* 📍 Auto location detection using browser GPS
+* 🌡️ Current temperature (min / max / current)
+* 💨 Wind speed, humidity, visibility
+* 🌅 Sunrise & sunset timing
+* 🌧️ Rain probability and precipitation
+* 🌫️ Air quality (PM10, PM2.5)
+* 📊 Interactive charts (scroll + zoom)
+* 📅 Historical data analysis (up to 2 years)
+* 🔁 Temperature toggle (°C / °F)
+
+---
+
+## 🧠 Tech Stack
+
+* React (Vite)
+* Recharts (for graphs)
+* Open-Meteo API
+* JavaScript (ES6)
+
+---
+
+## ⚙️ How to Run Locally
+
+```bash
+git clone https://github.com/sahilsingh78/weather-dashboard.git
+cd weather-dashboard
+npm install
+npm run dev
+```
+
+---
+
+## 📊 Project Structure
+
+```
+src/
+ ├── components/
+ ├── pages/
+ ├── services/
+ ├── utils/
+ ├── App.jsx
+```
+
+---
+
+## 📈 Some Notes
+
+* Used Open-Meteo API for weather & air quality data
+* Charts are scrollable and support zoom for better readability
+* Added validation for date ranges (max 2 years)
+* Wind direction is simplified into readable format (N, NE, etc.)
+
+---
+
+## ⚠️ Limitations
+
+* Historical data depends on API availability
+* Air quality data is approximate
+* Not intended for critical use
+
+---
+
+## 🌐 Live Demo
+
+(Will add after deployment)
+
+---
+
+## 🤝 Contributing
+
+This is a personal project, but suggestions are always welcome.
+
+---
+
+## 📄 License
+
+Free to use for learning purposes.
