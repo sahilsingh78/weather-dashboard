@@ -83,7 +83,7 @@ src/
 
 ## 🌐 Live Demo
 
-https://weather-dashboard-wcj1.vercel.app/
+https://weather-dashboard-4ejx.vercel.app/
 
 ---
 
