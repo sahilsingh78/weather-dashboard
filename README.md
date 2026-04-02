@@ -96,3 +96,15 @@ This is a personal project, but suggestions are always welcome.
 ## 📄 License
 
 Free to use for learning purposes.
+
+---
+
+# 👨‍💻 Author
+
+**Sahil Singh**
+
+B.Tech Information Technology
+Galgotias College of Engineering and Technology
+
+GitHub
+https://github.com/sahilsingh78
